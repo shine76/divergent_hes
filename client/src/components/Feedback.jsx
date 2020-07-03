@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
 });
 
 class Feedback extends Component {
-   player = localStorage.getItem("pseudo");
-   score = 22 + parseInt(localStorage.getItem("totalPoints"));
+  player = localStorage.getItem("pseudo");
+  score = 22 + parseInt(localStorage.getItem("totalPoints"));
   // Create Document Component
   MyDocument = () => {
     // this.setState({
@@ -68,11 +68,13 @@ class Feedback extends Component {
           <div className="alert alert-info">
             Votre score:{" "}
             <strong>
-              {parseInt(localStorage.getItem("totalPoints")) ? 22 + parseInt(localStorage.getItem("totalPoints")) : 0}
+              {parseInt(localStorage.getItem("totalPoints"))
+                ? 22 + parseInt(localStorage.getItem("totalPoints"))
+                : 0}
             </strong>
           </div>
           <div className="col-md-6 offset-md-3 jumbotron">
-            Feedback Here
+            Feedback Here - to fill after
             <br />
             <div>
               {/* <PDFViewer>{this.MyDocument()}</PDFViewer> */}
