@@ -174,9 +174,9 @@ class Question extends Component {
             {type ? (
               this.showQuestion()
             ) : (
-              <Step
+              <Dialog
                 getPoint={(point) => this.setTotal(point)}
-                data={this.props.data}
+                // data={this.props.data}
               />
             )}
           </div>
