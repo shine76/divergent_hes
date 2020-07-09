@@ -12,6 +12,8 @@ class Question extends Component {
     total: 0,
     students: [],
     studentLeaving: 0,
+    choosenId: 1,
+    choices: [],
   };
   componentDidMount() {
     localStorage.setItem("totalPoints", this.state.total);
@@ -36,6 +38,7 @@ class Question extends Component {
             answers={data.responses}
             max={data.question.maxPoints}
             getPoint={(point) => this.setTotal(point)}
+            getChoices={(choice) => this.getUserChoices(choice)}
           />
         </div>
         <br />
@@ -135,7 +138,25 @@ class Question extends Component {
     });
     let total = parseInt(localStorage.getItem("totalPoints")) + points;
     localStorage.setItem("totalPoints", total);
+
     this.removeStudent(points * -1);
+  };
+
+  getUserChoices = (answer) => {
+    let data = [];
+
+    if (answer.points < 0) {
+      data.push({
+        question: `${this.state.choosenId}`,
+        reponse: answer.notes,
+      });
+      this.setState({
+        choices: [...this.state.choices, ...data],
+      });
+    }
+    this.setState({
+      choosenId: this.state.choosenId + 1,
+    });
   };
 
   render() {
@@ -143,7 +164,7 @@ class Question extends Component {
       return <div></div>;
     }
     const { type } = this.props.data.question;
-    console.log(this.state.studentLeaving);
+    localStorage.setItem("choices", JSON.stringify(this.state.choices));
     return (
       <React.Fragment>
         <div className="row">
@@ -176,6 +197,7 @@ class Question extends Component {
             ) : (
               <Dialog
                 getPoint={(point) => this.setTotal(point)}
+                getChoices={(choice) => this.getUserChoices(choice)}
                 // data={this.props.data}
               />
             )}

@@ -365,6 +365,7 @@ export default class Dialog extends Component {
             modal={this.state.showModal}
             respClassName={(response) => this.setResponseClassName(response)}
             setPoints={(points) => this.props.getPoint(points)}
+            setChoices={(choice) => this.props.getChoices(choice)}
           />
         ) : null}
         {/* {this.state.showQ ? this.showQuestion() : null} */}
@@ -415,6 +416,7 @@ const ShowQuestion = ({
   modal,
   respClassName,
   setPoints,
+  setChoices,
 }) => {
   // 0 , 1
   let data = [];
@@ -437,6 +439,7 @@ const ShowQuestion = ({
                   //nextStep();
                   continueStep(resp);
                   setPoints(resp.points);
+                  setChoices(resp);
                 }}
               >
                 {resp.texte}

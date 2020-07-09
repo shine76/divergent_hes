@@ -14,7 +14,7 @@ class Reponses extends Component {
       id: null,
       enable: false,
     },
-    choices: [],
+
     toastClass: "",
   };
 
@@ -37,7 +37,7 @@ class Reponses extends Component {
               });
               this.getAnswerAndSetClasses(answer);
               this.props.getPoint(answer.points);
-              this.getUserChoices(answer.code);
+              // this.getUserChoices(answer.code);
             }}
             disabled={this.state.selected.id === answer._id}
           >
@@ -48,18 +48,9 @@ class Reponses extends Component {
     }
   };
 
-  getUserChoices = (answer) => {
-    let q = 0;
-    let data = [];
-    data.push({ question: `question${q + 1}`, answer });
-    this.setState({
-      choices: [...this.state.choices, ...data],
-    });
-  };
-
   showResponses = () => {
     const { answers } = this.props;
-   // console.log(answers);
+    // console.log(answers);
     return answers.map((answer, i) => (
       <React.Fragment key={i}>
         <button
@@ -68,7 +59,7 @@ class Reponses extends Component {
           onClick={() => {
             this.getAnswerAndSetClasses(answer);
             this.props.getPoint(answer.points);
-            this.getUserChoices(answer.code);
+            this.props.getChoices(answer);
           }}
           disabled={this.state.selected.id === answer._id}
         >
@@ -121,7 +112,7 @@ class Reponses extends Component {
   };
 
   showSelected = () => {
-   // console.log(this.state.toastClass);
+    // console.log(this.state.toastClass);
     if (this.state.selected.id && this.state.noteToShow) {
       toast(this.state.noteToShow, {
         position: toast.POSITION.BOTTOM_CENTER,
@@ -143,7 +134,7 @@ class Reponses extends Component {
   };
 
   render() {
-   // console.log(this.state.choices);
+    //console.log(this.props);
     return (
       <React.Fragment>
         <div className="card">
