@@ -1,7 +1,8 @@
 import axios from "axios";
 import { surveys } from "../apis/apiAdresses";
-import { FETCH_SURVEY, FETCH_SURVEYS } from "./types";
+import { FETCH_SURVEY, FETCH_SURVEYS, CREATE_SURVEY } from "./types";
 import { toast } from "react-toastify";
+import history from "../history";
 
 export const fetchSurvey = (surveyid) => {
   return async (dispatch) => {
@@ -29,5 +30,17 @@ export const clearSurvey = () => {
       type: FETCH_SURVEY,
       payload: {},
     });
+  };
+};
+
+export const createSurvey = (formData) => {
+  console.log(formData);
+  return async (dispatch) => {
+    const response = await axios.post(`${surveys}`, formData);
+    dispatch({
+      type: CREATE_SURVEY,
+      payload: response.data,
+    });
+    history.push(`/surveys/${response.data._id}/edit`);
   };
 };

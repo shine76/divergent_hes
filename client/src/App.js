@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Feedback from "./components/Feedback";
 import Score from "./components/Score";
 import Dialog from "./components/Dialog";
+import SurveyCreate from "./components/SurveyCreate";
 
 class App extends Component {
   render() {
@@ -30,6 +31,7 @@ class App extends Component {
 
         <Router history={history}>
           <Switch>
+            <Route exact path="/surveys/new" component={SurveyCreate} />
             <Route exact path="/surveys/:id" component={Survey} />
             <Route exact path="/surveys" component={Surveys} />
             <Route exact path="/info" component={Information} />
