@@ -63,12 +63,13 @@ export const renderTextArea = ({
   error,
   disabled,
   placeholder,
+  row,
 }) => {
   return (
     <div>
       <label>{label}</label>
       <textarea
-      rows="4"
+        rows={row}
         type={type}
         className={classnames("form-control g-pswdf-input", {
           "is-invalid": error,
@@ -83,7 +84,7 @@ export const renderTextArea = ({
   );
 };
 
-export const renderSelectForTypes = ({ input, error, data }) => {
+export const renderSelectForTypes = ({ input, error, data, label }) => {
   const selectOptions = data.map((option, i) => (
     <option key={i} value={option.value}>
       {option.label}
@@ -92,11 +93,9 @@ export const renderSelectForTypes = ({ input, error, data }) => {
   return (
     <div className="">
       <div className="form-group ">
-        <label htmlFor="gender" className="fw-4 c-ca fz-13">
-          Veuillez choisir le type de Question
-        </label>
+        <label htmlFor="gender">{label}</label>
         <select
-          className={classnames("form-control g-ui-input", {
+          className={classnames("form-control ", {
             "is-invalid": error,
           })}
           {...input}

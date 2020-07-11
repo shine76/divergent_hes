@@ -5,47 +5,49 @@ import {
   renderInput,
   renderSelectForTypes,
   renderTextArea,
-} from "../../../common/formFields";
+} from "../../../../common/formFields";
 
-class QuestionCreate extends Component {
+class ResponseCreate extends Component {
   state = {
-    typeOptions: [
+    supplementOptions: [
       { label: "Faites un choix ", value: 0 },
-      { label: "Réponses", value: "T" },
-      { label: "Dialogues", value: "F" },
+      { label: "Non", value: "F" },
+      { label: "Oui", value: "T" },
     ],
   };
+
   onSubmit = (formData) => {
-    this.props.submitQuestion(formData);
+    this.props.submitResponse(formData);
   };
   render() {
     return (
       <div className="col-md-6">
         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
           <Field
-            name="description"
+            name="texte"
             component={renderTextArea}
-            label="Détail de la question"
+            label="Texte de la réponse"
             type="text"
-            row="5"
+            row="2"
+          />
+          <Field name="code" component={renderInput} label="Code" type="text" />
+          <Field
+            name="notes"
+            component={renderInput}
+            label="Notes"
+            type="text"
           />
           <Field
-            name="titre"
+            name="points"
             component={renderInput}
-            label="Interrogation"
-            type="text"
-          />
-          <Field
-            name="maxPoints"
-            component={renderInput}
-            label="Points maximums"
+            label="Points"
             type="number"
           />
           <Field
             name="type"
             component={renderSelectForTypes}
-            data={this.state.typeOptions}
-            label="Veuillez choisir le type de Question"
+            data={this.state.supplementOptions}
+            label="Y a t-il des réponses supplémentaires?"
           />
 
           <br />
@@ -64,6 +66,6 @@ class QuestionCreate extends Component {
   }
 }
 
-const questionForm = reduxForm({ form: "questionForm" })(QuestionCreate);
+const responseForm = reduxForm({ form: "responseForm" })(ResponseCreate);
 
-export default connect(null, {})(questionForm);
+export default connect(null, {})(responseForm);

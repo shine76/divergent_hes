@@ -13,6 +13,7 @@ import Dialog from "./components/Dialog";
 import SurveyCreate from "./components/SurveyCreate";
 import SurveyShow from "./components/Survey/SurveyShow";
 import SurveyEdit from "./components/Survey/SurveyEdit";
+import QuestionEdit from "./components/Survey/Questions/QuestionEdit";
 
 class App extends Component {
   render() {
@@ -36,6 +37,7 @@ class App extends Component {
             <Route exact path="/surveys/:id" component={SurveyShow} />
             <Route exact path="/surveys/:id/edit" component={SurveyEdit} />
             <Route exact path="/surveys" component={Surveys} />
+            <Route exact path="/questions/:id" component={QuestionEdit} />
             <Route exact path="/info" component={Information} />
             <Route exact path="/feedback" component={Feedback} />
             <Route exact path="/dialog" component={Dialog} />

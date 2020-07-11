@@ -7,3 +7,7 @@ export const SET_FILIERE_SCORE = "SET_FILIERE_SCORE";
 // Questions
 export const CREATE_QUESTION = "CREATE_QUESTION";
 export const FETCH_QUESTION = "FETCH_QUESTION";
+export const FETCH_QUESTIONS = "FETCH_QUESTIONS";
+
+// Responses
+export const CREATE_RESPONSE = "CREATE_RESPONSE";

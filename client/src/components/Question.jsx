@@ -27,16 +27,16 @@ class Question extends Component {
     return (
       <div>
         {/* Points: {22 + this.state.total} */}
-        <p className="jumbotron">{data.question.description}</p>
+        <p className="jumbotron">{data.ques.description}</p>
         <br />
         <p style={{ textAlign: "center" }}>
-          <strong>{data.question.titre}</strong>
+          <strong>{data.ques.titre}</strong>
         </p>
         <br />
         <div className="col-md-10 offset-md-1 ">
           <Reponses
             answers={data.responses}
-            max={data.question.maxPoints}
+            max={data.ques.maxPoints}
             getPoint={(point) => this.setTotal(point)}
             getChoices={(choice) => this.getUserChoices(choice)}
           />
@@ -163,7 +163,7 @@ class Question extends Component {
     if (!this.props.data) {
       return <div></div>;
     }
-    const { type } = this.props.data.question;
+    const { type } = this.props.data.ques;
     localStorage.setItem("choices", JSON.stringify(this.state.choices));
     return (
       <React.Fragment>

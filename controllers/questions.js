@@ -38,17 +38,17 @@ const getQuestions = (req, res) => {
 // get One question from a survey
 const getQuestion = (req, res) => {
   const questionid = req.params.questionid;
-  Question.findById(questionid).then((question) => {
-    if (question.type) {
+  Question.findById(questionid).then((ques) => {
+    if (ques.type) {
       Response.find({ question: questionid }).then((responses) => {
-        return res.json({ question, responses });
+        return res.json({ ques, responses });
       });
     } else {
       Step.find({ question: questionid })
         .sort({ date: 1 })
         .then((steps) => {
           Response.find({ question: questionid }).then((responses) => {
-            return res.json({ question, steps, responses });
+            return res.json({ ques, steps, responses });
           });
         });
     }
@@ -57,8 +57,9 @@ const getQuestion = (req, res) => {
 
 const responsesCreate = (req, res) => {
   const questionid = req.params.questionid;
+  console.log(req.body);
   if (questionid) {
-    Question.findById(questionid).then((question) => {
+         Question.findById(questionid).then((question) => {
       const newResponse = new Response({
         question: questionid,
         code: req.body.code,
@@ -70,7 +71,7 @@ const responsesCreate = (req, res) => {
         res.status(200).json(response);
       });
       //doAddResponses(req, res, question);
-    });
+    }); 
   }
 };
 
