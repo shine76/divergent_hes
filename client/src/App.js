@@ -5,13 +5,14 @@ import history from "./history";
 import Home from "./components/Home";
 import Information from "./components/Information";
 import Login from "./components/Login";
-import Survey from "./components/Survey";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Feedback from "./components/Feedback";
 import Score from "./components/Score";
 import Dialog from "./components/Dialog";
 import SurveyCreate from "./components/SurveyCreate";
+import SurveyShow from "./components/Survey/SurveyShow";
+import SurveyEdit from "./components/Survey/SurveyEdit";
 
 class App extends Component {
   render() {
@@ -32,7 +33,8 @@ class App extends Component {
         <Router history={history}>
           <Switch>
             <Route exact path="/surveys/new" component={SurveyCreate} />
-            <Route exact path="/surveys/:id" component={Survey} />
+            <Route exact path="/surveys/:id" component={SurveyShow} />
+            <Route exact path="/surveys/:id/edit" component={SurveyEdit} />
             <Route exact path="/surveys" component={Surveys} />
             <Route exact path="/info" component={Information} />
             <Route exact path="/feedback" component={Feedback} />

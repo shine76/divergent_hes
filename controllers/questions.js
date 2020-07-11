@@ -7,7 +7,8 @@ const Step = require("../models/Step");
 // Create one question for a survey
 const createQuestion = (req, res) => {
   const surveyid = req.params.surveyid;
-
+  console.log(req.body);
+  console.log(req.body.type === "F" ? false : true);
   if (surveyid) {
     Survey.findById(surveyid).then((survey) => {
       const newQuestion = new Question({
@@ -15,7 +16,7 @@ const createQuestion = (req, res) => {
         titre: req.body.titre,
         description: req.body.description,
         maxPoints: req.body.maxPoints,
-        type: req.body.type,
+        type: req.body.type === "F" ? false : true,
       });
       newQuestion.save().then((question) => {
         res.json(question);

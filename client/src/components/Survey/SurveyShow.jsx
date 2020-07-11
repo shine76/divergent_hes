@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSurvey, clearSurvey } from "../actions/surveyActions";
-import { fetchQuestion } from "../actions/questionActions";
-import { setFiliereScore } from "../actions/filiereActions";
-import Question from "./Question";
-import history from "../history";
+import { fetchSurvey, clearSurvey } from "../../actions/surveyActions";
+import { fetchQuestion } from "../../actions/questionActions";
+import { setFiliereScore } from "../../actions/filiereActions";
+import Question from "../Question";
+import history from "../../history";
 
-class Survey extends Component {
+class SurveyShow extends Component {
   state = {
     questionPosition: 0,
     showStart: true,
@@ -235,4 +235,4 @@ export default connect(mapStateToProps, {
   fetchQuestion,
   clearSurvey,
   setFiliereScore,
-})(Survey);
+})(SurveyShow);

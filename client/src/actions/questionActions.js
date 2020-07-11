@@ -1,6 +1,7 @@
 import axios from "axios";
-import { questions } from "../apis/apiAdresses";
-import { FETCH_QUESTION } from "./types";
+import { surveys, questions } from "../apis/apiAdresses";
+import { FETCH_QUESTION, CREATE_QUESTION } from "./types";
+import history from "../history";
 
 export const fetchQuestion = (questionid) => {
   return async (dispatch) => {
@@ -9,5 +10,19 @@ export const fetchQuestion = (questionid) => {
       type: FETCH_QUESTION,
       payload: response.data,
     });
+  };
+};
+
+export const createQuestion = (surveyid, formData) => {
+  return async (dispatch) => {
+    const response = await axios.post(
+      `${surveys}/${surveyid}/questions`,
+      formData
+    );
+    dispatch({
+      type: CREATE_QUESTION,
+      payload: response.data,
+    });
+    history.push(`/surveys/${surveyid}/edit`);
   };
 };

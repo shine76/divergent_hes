@@ -55,3 +55,56 @@ export const renderInput = ({
     </div>
   );
 };
+
+export const renderTextArea = ({
+  input,
+  label,
+  type,
+  error,
+  disabled,
+  placeholder,
+}) => {
+  return (
+    <div>
+      <label>{label}</label>
+      <textarea
+      rows="4"
+        type={type}
+        className={classnames("form-control g-pswdf-input", {
+          "is-invalid": error,
+        })}
+        {...input}
+        autoComplete="new-password"
+        placeholder={placeholder}
+        disabled={disabled}
+      ></textarea>
+      {error && <div className="invalid-feedback">{error}</div>}
+    </div>
+  );
+};
+
+export const renderSelectForTypes = ({ input, error, data }) => {
+  const selectOptions = data.map((option, i) => (
+    <option key={i} value={option.value}>
+      {option.label}
+    </option>
+  ));
+  return (
+    <div className="">
+      <div className="form-group ">
+        <label htmlFor="gender" className="fw-4 c-ca fz-13">
+          Veuillez choisir le type de Question
+        </label>
+        <select
+          className={classnames("form-control g-ui-input", {
+            "is-invalid": error,
+          })}
+          {...input}
+        >
+          {selectOptions}
+        </select>
+        {error && <div className="invalid-feedback">{error}</div>}
+      </div>
+    </div>
+  );
+};
