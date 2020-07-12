@@ -6,6 +6,7 @@ import {
   FETCH_QUESTIONS,
   CREATE_RESPONSE,
   CREATE_STEP,
+  ADD_TEACHER_TEXT,
 } from "./types";
 import history from "../history";
 
@@ -57,7 +58,6 @@ export const createResponse = (questionid, formdata) => {
 };
 
 export const createStep = (questionid, formData) => {
-  console.log(formData, questionid);
   return async (dispatch) => {
     const response = await axios.post(
       `${questions}/${questionid}/steps`,
@@ -67,5 +67,29 @@ export const createStep = (questionid, formData) => {
       type: CREATE_STEP,
       payload: response.data,
     });
+  };
+};
+
+export const addTeacherText = (questionid, stepid, formData) => {
+  console.log(formData, questionid, stepid);
+  return async (dispatch) => {
+    const response = await axios.post(
+      `${questions}/${questionid}/steps/${stepid}/teacher`,
+      formData
+    );
+    dispatch({
+      type: ADD_TEACHER_TEXT,
+      payload: response.data,
+    });
+  };
+};
+
+export const addStudentText = (questionid, stepid, formData) => {
+  console.log(questionid, stepid);
+  return async (dispatch) => {
+    const response = await axios.post(
+      `${questions}/${questionid}/steps/${stepid}/student`,
+      formData
+    );
   };
 };

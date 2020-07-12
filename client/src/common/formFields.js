@@ -59,7 +59,6 @@ export const renderInput = ({
 export const renderTextArea = ({
   input,
   label,
-  type,
   error,
   disabled,
   placeholder,
@@ -70,7 +69,6 @@ export const renderTextArea = ({
       <label>{label}</label>
       <textarea
         rows={row}
-        type={type}
         className={classnames("form-control g-pswdf-input", {
           "is-invalid": error,
         })}
@@ -107,3 +105,18 @@ export const renderSelectForTypes = ({ input, error, data, label }) => {
     </div>
   );
 };
+
+/* export const renderRadioButton = ({ input, data, label }) => {
+  return (
+    <div>
+      <div>
+        <label>Sex</label>
+        <div>
+          <label><Field name="sex" component={input} type="radio" value="male" /> Male</label>
+          <label><Field name="sex" component={input} type="radio" value="female" /> Female</label>
+        </div>
+      </div>
+    </div>
+  );
+};
+ */

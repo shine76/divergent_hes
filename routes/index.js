@@ -35,10 +35,12 @@ router
 
 // Create Steps
 router.route("/questions/:questionid/steps").post(ctrlSteps.stepCreate);
+
 router
   .route("/questions/:questionid/steps/:stepid/teacher")
   .post(ctrlSteps.teacherCreate);
-router
+
+  router
   .route("/questions/:questionid/steps/:stepid/student")
   .post(ctrlSteps.studentCreate);
 

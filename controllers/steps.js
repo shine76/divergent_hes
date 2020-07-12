@@ -56,11 +56,14 @@ module.exports = {
 
 // Internal functions
 const doAddTeacher = (req, res, step) => {
+  console.log(req.body);
+
   const { text, studentNext, askQuestion } = req.body;
+
   step.teacher.push({
     text,
-    studentNext,
-    askQuestion,
+    studentNext: studentNext === "T" ? true : false,
+    askQuestion: askQuestion === "T" ? true : false,
   });
   step.save().then((step) => {
     res.json(step);
@@ -71,8 +74,8 @@ const doAddStudent = (req, res, step) => {
   const { text, teacherNext, askQuestion } = req.body;
   step.student.push({
     text,
-    teacherNext,
-    askQuestion,
+    teacherNext: teacherNext === "T" ? true : false,
+    askQuestion: askQuestion === "T" ? true : false,
   });
   step.save().then((step) => {
     res.json(step);

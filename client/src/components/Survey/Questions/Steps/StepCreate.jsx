@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-import {
-  renderInput,
-  renderSelectForTypes,
-  renderTextArea,
-} from "../../../common/formFields";
+import { renderInput } from "../../../../common/formFields";
 
 class StepCreate extends Component {
   onSubmit = (formData) => {
@@ -16,9 +12,11 @@ class StepCreate extends Component {
     return (
       <React.Fragment>
         <div className="col-md-4" style={{ marginTop: 10 }}>
-          <div class="card">
-            <h5 class="card-header text-center">Ajouter une nouvelle étape</h5>
-            <div class="card-body">
+          <div className="card">
+            <h5 className="card-header text-center">
+              Ajouter une nouvelle étape
+            </h5>
+            <div className="card-body">
               <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
                 <Field
                   name="titre"

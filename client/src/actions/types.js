@@ -14,3 +14,4 @@ export const CREATE_RESPONSE = "CREATE_RESPONSE";
 
 // Steps
 export const CREATE_STEP = "CREATE_STEP";
+export const ADD_TEACHER_TEXT = "ADD_TEACHER_TEXT";

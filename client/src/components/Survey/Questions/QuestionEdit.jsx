@@ -6,7 +6,8 @@ import {
 } from "../../../actions/questionActions";
 import { connect } from "react-redux";
 import ResponseCreate from "./Responses/ResponseCreate";
-import StepCreate from "./StepCreate";
+import StepCreate from "./Steps/StepCreate";
+import { Link } from "react-router-dom";
 
 class QuestionEdit extends Component {
   state = {
@@ -26,6 +27,21 @@ class QuestionEdit extends Component {
   };
 
   showQuestionResponses = () => {};
+  showSteps = () => {
+    return this.props.question.steps.map((step, i) => {
+      return (
+        <div key={i}>
+          {step.titre}{" "}
+          <Link
+            className="btn btn-success btn-sm"
+            to={`/questions/${this.props.match.params.id}/step/${step._id}`}
+          >
+            Ajouter dialogues
+          </Link>
+        </div>
+      );
+    });
+  };
 
   render() {
     if (!this.props.question) {
@@ -35,6 +51,8 @@ class QuestionEdit extends Component {
       <div>
         {this.props.question.ques.description}
         <br /> <br />
+        {this.showSteps()}
+        <br />
         {this.props.question.ques.type === false ? (
           <button
             className="btn btn-warning btn-sm"

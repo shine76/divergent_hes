@@ -14,6 +14,7 @@ import SurveyCreate from "./components/SurveyCreate";
 import SurveyShow from "./components/Survey/SurveyShow";
 import SurveyEdit from "./components/Survey/SurveyEdit";
 import QuestionEdit from "./components/Survey/Questions/QuestionEdit";
+import StepEdit from "./components/Survey/Questions/Steps/StepEdit";
 
 class App extends Component {
   render() {
@@ -30,22 +31,28 @@ class App extends Component {
             />
           </a>
         </div>
-
-        <Router history={history}>
-          <Switch>
-            <Route exact path="/surveys/new" component={SurveyCreate} />
-            <Route exact path="/surveys/:id" component={SurveyShow} />
-            <Route exact path="/surveys/:id/edit" component={SurveyEdit} />
-            <Route exact path="/surveys" component={Surveys} />
-            <Route exact path="/questions/:id" component={QuestionEdit} />
-            <Route exact path="/info" component={Information} />
-            <Route exact path="/feedback" component={Feedback} />
-            <Route exact path="/dialog" component={Dialog} />
-            <Route exact path="/score" component={Score} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/" component={Home} />
-          </Switch>
-        </Router>
+        <div style={{ marginTop: 10 }}>
+          <Router history={history}>
+            <Switch>
+              <Route exact path="/surveys/new" component={SurveyCreate} />
+              <Route exact path="/surveys/:id" component={SurveyShow} />
+              <Route exact path="/surveys/:id/edit" component={SurveyEdit} />
+              <Route exact path="/surveys" component={Surveys} />
+              <Route
+                exact
+                path="/questions/:id/step/:stepid"
+                component={StepEdit}
+              />
+              <Route exact path="/questions/:id" component={QuestionEdit} />
+              <Route exact path="/info" component={Information} />
+              <Route exact path="/feedback" component={Feedback} />
+              <Route exact path="/dialog" component={Dialog} />
+              <Route exact path="/score" component={Score} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/" component={Home} />
+            </Switch>
+          </Router>
+        </div>
       </div>
     );
   }
