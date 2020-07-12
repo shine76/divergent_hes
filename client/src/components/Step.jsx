@@ -28,6 +28,7 @@ export default class Step extends Component {
     responseSelectedId: null,
     scrollCounter: 0,
     responseClassName: "",
+    showWaiting: false,
   };
 
   componentDidMount() {
@@ -42,12 +43,27 @@ export default class Step extends Component {
     this.setState({
       step: step,
     });
+    setTimeout(() => {
+      this.setState({
+        showWaiting: true,
+      });
+    }, 1000);
   };
 
   setStepID = () => {
     this.setState({
       stepId: this.state.stepId + 1,
     });
+  };
+
+  showElipsis = () => {
+    return (
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    );
   };
 
   manageDialogData = (step) => {
@@ -76,6 +92,7 @@ export default class Step extends Component {
                 : textLength > 200 && textLength <= 300
                 ? 8000
                 : 6000,
+            showWaiting: false,
           });
 
           let elem = document.getElementById(
@@ -89,6 +106,7 @@ export default class Step extends Component {
               this.setState({
                 showQuestion: true,
                 showModal: true,
+                showWaiting: false,
               });
             }, this.state.timer - 1000);
 
@@ -101,6 +119,11 @@ export default class Step extends Component {
             this.setState({
               nextSpeaker: "student",
             });
+            setTimeout(() => {
+              this.setState({
+                showWaiting: true,
+              });
+            }, 1000);
             if (this.state.teacher_counter !== 0) {
               this.setState({
                 student_counter: this.state.student_counter + 1,
@@ -111,6 +134,7 @@ export default class Step extends Component {
             this.setState({
               nextSpeaker: "teacher",
               teacher_counter: this.state.teacher_counter + 1,
+              showWaiting: true,
             });
           }
         }
@@ -137,6 +161,7 @@ export default class Step extends Component {
                 : textLength > 200 && textLength <= 300
                 ? 9000
                 : 6000,
+            showWaiting: false,
           });
 
           // scroll to the student message view
@@ -158,6 +183,11 @@ export default class Step extends Component {
               nextSpeaker: "teacher",
               teacher_counter: this.state.teacher_counter + 1,
             });
+            setTimeout(() => {
+              this.setState({
+                showWaiting: true,
+              });
+            }, 1000);
             this.tcounter++;
           } else {
             this.setState({
@@ -167,7 +197,7 @@ export default class Step extends Component {
           }
         }
       }
-    }, 500);
+    }, this.state.timer);
   };
 
   checkEventNextStep = () => {
@@ -239,7 +269,7 @@ export default class Step extends Component {
           },
           responseClassName: "success",
         });
-      } else if (response.points === -2) {
+      } else if (response.points === this.props.data.ques.maxPoints) {
         this.setState({
           endScenario: {
             status: true,
@@ -271,7 +301,7 @@ export default class Step extends Component {
     console.log(response.points);
     if (
       this.state.responseSelectedId === response.id &&
-      response.points === -2
+      response.points === this.props.data.ques.maxPoints
     ) {
       return "btn-danger";
     } else if (
@@ -287,8 +317,19 @@ export default class Step extends Component {
     if (!this.state.step) {
       return <div>Loading</div>;
     }
+    console.log(this.props.data.ques.maxPoints);
     return (
-      <div className="container" style={{ marginTop: 10 }}>
+      <div className="container">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Description</h5>
+            <p class="card-text">
+              Cette scène se passe dans une de vos salles de classe. Observez le
+              dialogue et faites le choix d'une proposition lorsqu'elles
+              apparaitront
+            </p>
+          </div>
+        </div>
         <div className="messaging">
           <div className="inbox_msg">
             <div className="mesgs">
@@ -312,6 +353,7 @@ export default class Step extends Component {
 
         {/*  {this.state.endScenario.status ? this.endGame() : null} */}
         {this.showSelected()}
+        {this.state.showWaiting ? this.showElipsis() : null}
       </div>
     );
   }
@@ -366,13 +408,13 @@ const ShowQuestion = ({
       <div class="card-header text-center">
         <strong>Veuillez faire un choix</strong>
       </div>
-      <div class="card-body">
+      <div class="card-body" style={{ padding: 0 }}>
         <div className="row">
           {data.map((resp, i) => (
-            <div className="col-md-5 offset-md-1" key={i}>
+            <div className="col-md-5" key={i} style={{ marginLeft: 40 }}>
               <button
                 className={`btn ${respClassName(resp)}`}
-                style={{ margin: 10 }}
+                style={{ margin: 15, height: 100, width: 300 }}
                 onClick={() => {
                   continueStep(resp);
                   setPoints(resp.points);

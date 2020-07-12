@@ -82,12 +82,14 @@ class Question extends Component {
 
         if (i === studentNumber) {
           clearInterval(interval);
-          setInterval(() => {
+          let showInterval = setInterval(() => {
             document.getElementById("sclass").click();
           }, 2000);
+
           setTimeout(() => {
             document.getElementById("sclass").click();
-          }, 5000);
+            clearInterval(showInterval);
+          }, 7000);
         }
       }, 1000);
     }
@@ -195,10 +197,10 @@ class Question extends Component {
             {type ? (
               this.showQuestion()
             ) : (
-              <Dialog
+              <Step
                 getPoint={(point) => this.setTotal(point)}
                 getChoices={(choice) => this.getUserChoices(choice)}
-                // data={this.props.data}
+                data={this.props.data}
               />
             )}
           </div>

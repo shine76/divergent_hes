@@ -198,25 +198,37 @@ class SurveyShow extends Component {
         {(this.props.surv.survey.qlength - this.state.questionPosition !== 0) &
         (this.props.surv.survey.qlength - this.state.questionPosition !==
           this.props.surv.survey.qlength) ? (
-          <button
-            className="btn btn-success  btn-sm"
-            onClick={() => {
-              this.loadNextQuestion();
-            }}
-            style={{ float: "right", marginBottom: 15 }}
-          >
-            Suivant
-          </button>
+          <React.Fragment>
+            <div style={{ float: "right", marginBottom: 15 }}>
+              <span className="badge badge-warning" style={{ marginRight: 10 }}>
+                Question {this.state.questionPosition} /
+                {this.props.surv.survey.qlength}
+              </span>
+              <button
+                className="btn btn-success  btn-sm"
+                onClick={() => {
+                  this.loadNextQuestion();
+                }}
+              >
+                Suivant
+              </button>
+            </div>
+          </React.Fragment>
         ) : null}
 
         {this.props.surv.survey.qlength - this.state.questionPosition === 0 ? (
-          <button
-            style={{ float: "right", marginBottom: 15 }}
-            className="btn btn-warning btn-sm"
-            onClick={() => this.submitSurvey()}
-          >
-            Terminer
-          </button>
+          <div style={{ float: "right", marginBottom: 15 }}>
+            <span className="badge badge-warning" style={{ marginRight: 10 }}>
+              Question {this.state.questionPosition} /
+              {this.props.surv.survey.qlength}
+            </span>
+            <button
+              className="btn btn-warning btn-sm"
+              onClick={() => this.submitSurvey()}
+            >
+              Terminer
+            </button>
+          </div>
         ) : null}
       </div>
     );

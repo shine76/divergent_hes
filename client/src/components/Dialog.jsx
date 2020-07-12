@@ -374,7 +374,7 @@ export default class Dialog extends Component {
             </div>
           </div>
         </div>
-        {this.state.showQuestion ? (
+        {!this.state.showQuestion ? (
           <ShowQuestion
             responses={this.state.responses}
             down={this.state.responseDownId}
@@ -448,13 +448,13 @@ const ShowQuestion = ({
       <div class="card-header text-center">
         <strong>Veuillez faire un choix</strong>
       </div>
-      <div class="card-body">
+      <div class="card-body" style={{ padding: 0 }}>
         <div className="row">
           {data.map((resp, i) => (
-            <div className="col-md-5 offset-md-1" key={i}>
+            <div className="col-md-5 " key={i} style={{ marginLeft: 40 }}>
               <button
                 className={`btn ${respClassName(resp)}`}
-                style={{ margin: 10 }}
+                style={{ margin: 15, height: 100, width: 300 }}
                 onClick={() => {
                   //nextStep();
                   continueStep(resp);
