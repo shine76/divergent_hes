@@ -122,11 +122,11 @@ img {
   display: inline-block;
   position: relative;
   width: 80px;
-  height: 80px;
+  height: 5px;
 }
 .lds-ellipsis div {
   position: absolute;
-  top: 20px;
+  top: 2px;
   width: 5px;
   height: 5px;
   border-radius: 50%;

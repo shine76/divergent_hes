@@ -66,11 +66,7 @@ class SurveyShow extends Component {
     if (!this.props.surv.survey) {
       return <div> Loadingg...</div>;
     }
-
-    //console.log(this.props.q.question.type);
     const { question } = this.props.q;
-
-    //console.log(this.props.surv.survey.qlength, this.state.questionPosition);
     return (
       <div className="container text-center" style={{ marginTop: 10 }}>
         {this.showSurvey()}
@@ -99,7 +95,6 @@ class SurveyShow extends Component {
               <br />
               <button
                 className="btn btn-warning btn-lg rounded"
-                // onClick={() => this.startSurvey()}
                 style={{ marginTop: 10 }}
                 data-toggle="modal"
                 data-target="#exampleModalCenter"

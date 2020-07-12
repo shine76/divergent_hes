@@ -39,6 +39,7 @@ export default class Step extends Component {
       this.manageDialogData(this.state.step);
     }, 500);
   }
+
   setStep = (step) => {
     this.setState({
       step: step,
@@ -98,7 +99,9 @@ export default class Step extends Component {
           let elem = document.getElementById(
             `text_${this.state.teacher_counter}`
           );
-          elem.scrollIntoView();
+          if (elem !== null) {
+            elem.scrollIntoView();
+          }
 
           // arreter le dialogue si une question doit être posée
           if (step.teacher[this.state.teacher_counter].askQuestion) {
@@ -169,7 +172,9 @@ export default class Step extends Component {
             `text_${this.state.student_counter}`
           );
 
-          elem.scrollIntoView();
+          if (elem !== null) {
+            elem.scrollIntoView();
+          }
 
           if (step.student[this.state.student_counter].askQuestion) {
             this.setState({
@@ -321,7 +326,7 @@ export default class Step extends Component {
     return (
       <div className="container">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body" style={{ padding: 10 }}>
             <h5 class="card-title">Description</h5>
             <p class="card-text">
               Cette scène se passe dans une de vos salles de classe. Observez le
@@ -330,6 +335,7 @@ export default class Step extends Component {
             </p>
           </div>
         </div>
+
         <div className="messaging">
           <div className="inbox_msg">
             <div className="mesgs">
@@ -337,6 +343,7 @@ export default class Step extends Component {
                 <ShowStep step={this.state.dialogData} />
               </div>
             </div>
+            {this.state.showWaiting ? this.showElipsis() : null}
           </div>
         </div>
         {this.state.showQuestion ? (
@@ -353,7 +360,6 @@ export default class Step extends Component {
 
         {/*  {this.state.endScenario.status ? this.endGame() : null} */}
         {this.showSelected()}
-        {this.state.showWaiting ? this.showElipsis() : null}
       </div>
     );
   }

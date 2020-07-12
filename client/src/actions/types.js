@@ -11,3 +11,6 @@ export const FETCH_QUESTIONS = "FETCH_QUESTIONS";
 
 // Responses
 export const CREATE_RESPONSE = "CREATE_RESPONSE";
+
+// Steps
+export const CREATE_STEP = "CREATE_STEP";

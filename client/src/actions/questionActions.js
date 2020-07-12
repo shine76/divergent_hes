@@ -5,6 +5,7 @@ import {
   CREATE_QUESTION,
   FETCH_QUESTIONS,
   CREATE_RESPONSE,
+  CREATE_STEP,
 } from "./types";
 import history from "../history";
 
@@ -43,7 +44,6 @@ export const fetchQuestions = (surveyid) => {
 };
 
 export const createResponse = (questionid, formdata) => {
-  console.log(questionid, formdata);
   return async (dispatch) => {
     const response = await axios.post(
       `${questions}/${questionid}/reponses`,
@@ -51,6 +51,20 @@ export const createResponse = (questionid, formdata) => {
     );
     dispatch({
       type: CREATE_RESPONSE,
+      payload: response.data,
+    });
+  };
+};
+
+export const createStep = (questionid, formData) => {
+  console.log(formData, questionid);
+  return async (dispatch) => {
+    const response = await axios.post(
+      `${questions}/${questionid}/steps`,
+      formData
+    );
+    dispatch({
+      type: CREATE_STEP,
       payload: response.data,
     });
   };
