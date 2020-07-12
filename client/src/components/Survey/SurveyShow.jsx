@@ -199,11 +199,11 @@ class SurveyShow extends Component {
         (this.props.surv.survey.qlength - this.state.questionPosition !==
           this.props.surv.survey.qlength) ? (
           <button
-            className="btn btn-success"
+            className="btn btn-success  btn-sm"
             onClick={() => {
               this.loadNextQuestion();
             }}
-            style={{ float: "right" }}
+            style={{ float: "right", marginBottom: 15 }}
           >
             Suivant
           </button>
@@ -211,8 +211,8 @@ class SurveyShow extends Component {
 
         {this.props.surv.survey.qlength - this.state.questionPosition === 0 ? (
           <button
-            style={{ float: "right" }}
-            className="btn btn-warning"
+            style={{ float: "right", marginBottom: 15 }}
+            className="btn btn-warning btn-sm"
             onClick={() => this.submitSurvey()}
           >
             Terminer

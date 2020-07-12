@@ -27,7 +27,9 @@ class Question extends Component {
     return (
       <div>
         {/* Points: {22 + this.state.total} */}
-        <p className="jumbotron">{data.ques.description}</p>
+        <p className="jumbotron" style={{ padding: 10, marginBottom: 0 }}>
+          {data.ques.description}
+        </p>
         <br />
         <p style={{ textAlign: "center" }}>
           <strong>{data.ques.titre}</strong>
@@ -65,9 +67,10 @@ class Question extends Component {
   };
 
   removeStudent = (studentNumber) => {
+    // copy the state
     let st = [...this.state.students];
     let i = 0;
-
+    // Récupérer le nombre d'étudiants à supprimer
     if (studentNumber !== 0) {
       let interval = setInterval(() => {
         st.pop();
@@ -79,10 +82,12 @@ class Question extends Component {
 
         if (i === studentNumber) {
           clearInterval(interval);
-          document.getElementById("sclass").click();
+          setInterval(() => {
+            document.getElementById("sclass").click();
+          }, 2000);
           setTimeout(() => {
             document.getElementById("sclass").click();
-          }, 7000);
+          }, 5000);
         }
       }, 1000);
     }
@@ -93,7 +98,7 @@ class Question extends Component {
       <div className="row">
         {this.state.students.map((student) => {
           return (
-            <div className="col-md-6">
+            <div className="col-md-4">
               <div className="card-body">
                 <img src={`/images/${student}`} alt="" />
               </div>
@@ -103,11 +108,6 @@ class Question extends Component {
       </div>
     );
   };
-
-  /*style={{
-                backgroundColor:
-                  this.state.addStyleColor !== false ? "red" : "white",
-              }} */
 
   popover = () => (
     <Popover id="popover-basic">
@@ -168,7 +168,7 @@ class Question extends Component {
     return (
       <React.Fragment>
         <div className="row">
-          <div className="col-md-2 card">
+          <div className="col-md-3 card" style={{ height: 650 }}>
             <OverlayTrigger
               trigger="click"
               placement="right"
@@ -190,7 +190,7 @@ class Question extends Component {
             </OverlayTrigger>
             {this.showStudents()}
           </div>
-          <div className="col-md-10">
+          <div className="col-md-9">
             {/* <button onClick={() => this.removeStudent()}>Remove</button> */}
             {type ? (
               this.showQuestion()

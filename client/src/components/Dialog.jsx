@@ -29,6 +29,7 @@ export default class Dialog extends Component {
     responseSelectedId: null,
     scrollCounter: 0,
     responseClassName: "",
+    showWaiting: false,
   };
   componentDidMount() {
     // Set Start with step 1 (Get data for the first step)
@@ -65,6 +66,7 @@ export default class Dialog extends Component {
                 : textLength > 200 && textLength <= 300
                 ? 7000
                 : 5000,
+            showWaiting: false,
           });
 
           /*           let elem = document.getElementById(
@@ -78,6 +80,7 @@ export default class Dialog extends Component {
               this.setState({
                 showQuestion: true,
                 showModal: true,
+                showWaiting: false,
               });
             }, this.state.timer - 1000);
 
@@ -89,6 +92,7 @@ export default class Dialog extends Component {
             // next speaker is student
             this.setState({
               nextSpeaker: "student",
+              showWaiting: true,
             });
             if (this.state.teacher_counter !== 0) {
               this.setState({
@@ -100,6 +104,7 @@ export default class Dialog extends Component {
             this.setState({
               nextSpeaker: "teacher",
               teacher_counter: this.state.teacher_counter + 1,
+              showWaiting: true,
             });
           }
         }
@@ -126,6 +131,7 @@ export default class Dialog extends Component {
                 : textLength > 200 && textLength <= 300
                 ? 7000
                 : 5000,
+            showWaiting: false,
           });
 
           // scroll to the student message view
@@ -138,6 +144,7 @@ export default class Dialog extends Component {
           if (step.student[this.state.student_counter].askQuestion) {
             this.setState({
               showQuestion: true,
+              showWaiting: false,
             });
             clearInterval(interval);
           }
@@ -146,17 +153,29 @@ export default class Dialog extends Component {
             this.setState({
               nextSpeaker: "teacher",
               teacher_counter: this.state.teacher_counter + 1,
+              showWaiting: true,
             });
             this.tcounter++;
           } else {
             this.setState({
               nextSpeaker: "student",
               student_counter: this.state.student_counter + 1,
+              showWaiting: true,
             });
           }
         }
       }
-    }, 500);
+    }, this.state.timer);
+  };
+
+  showElipsis = () => {
+    return (
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    );
   };
 
   setStep = (step) => {
@@ -335,7 +354,7 @@ export default class Dialog extends Component {
       return <div>Loading</div>;
     }
     return (
-      <div className="container" style={{ marginTop: 10 }}>
+      <div className="container">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Description</h5>
@@ -372,6 +391,7 @@ export default class Dialog extends Component {
 
         {this.state.endScenario.status ? this.endGame() : null}
         {this.showSelected()}
+        {this.state.showWaiting ? this.showElipsis() : null}
       </div>
     );
   }

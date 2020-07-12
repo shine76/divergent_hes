@@ -113,7 +113,7 @@ img {
   padding: 0 0 50px 0;
 }
 .msg_history {
-  height: 700px;
+  height: 500px;
   overflow-y: auto;
   scroll-behavior: smooth;
 }

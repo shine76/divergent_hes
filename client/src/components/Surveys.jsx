@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchSurveys } from "../actions/surveyActions";
 
-
 class Surveys extends Component {
   componentDidMount() {
     this.props.fetchSurveys();
@@ -10,20 +9,22 @@ class Surveys extends Component {
 
   showSurveys = () => {
     return (
-      <div className="row card">
-        <div className="card-header text-center text-white bg-dark mb-3">
-          <strong>Veuillez choisir le thème</strong>
-        </div>
-        <div className="card-body">
-          {this.props.surveys.map((survey, i) => (
-            <a
-              className="col-md-5 col-sm-5 col-xs-5 btn btn-secondary btn-lg text-white"
-              style={{ margin: 20 }}
-              href={`/surveys/${survey._id}`}
-            >
-              {survey.titre}
-            </a>
-          ))}
+      <div className="container">
+        <div className="row card">
+          <div className="card-header text-center text-white bg-dark mb-3">
+            <strong>Veuillez choisir le thème</strong>
+          </div>
+          <div className="card-body">
+            {this.props.surveys.map((survey, i) => (
+              <a
+                className="col-md-5 col-sm-5 col-xs-5 btn btn-secondary btn-lg text-white"
+                style={{ margin: 20 }}
+                href={`/surveys/${survey._id}`}
+              >
+                {survey.titre}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     );

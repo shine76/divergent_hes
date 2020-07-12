@@ -18,7 +18,7 @@ import QuestionEdit from "./components/Survey/Questions/QuestionEdit";
 class App extends Component {
   render() {
     return (
-      <div className="container" style={{ marginTop: 10 }}>
+      <div className="container-fluid" style={{ marginTop: 10 }}>
         <ToastContainer />
         <div className="text-center">
           <a href="/">
