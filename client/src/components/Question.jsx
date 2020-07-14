@@ -179,7 +179,7 @@ class Question extends Component {
               <div
                 className={`card-header text-white ${
                   22 + this.state.total < 15 ? "bg-danger" : "bg-success"
-                }  mb-3 `}
+                }`}
                 id="sclass"
                 style={{ padding: "0.5rem 1rem" }}
               >
@@ -190,6 +190,12 @@ class Question extends Component {
                 étudiant-es
               </div>
             </OverlayTrigger>
+            <span className="badge badge-dark" style={{ borderRadius: 0 }}>
+              Prof:{" "}
+              {localStorage.getItem("pseudo") !== null
+                ? localStorage.getItem("pseudo")
+                : "Invité-e"}
+            </span>
             {this.showStudents()}
           </div>
           <div className="col-md-9">
