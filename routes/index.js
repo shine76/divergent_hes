@@ -40,7 +40,7 @@ router
   .route("/questions/:questionid/steps/:stepid/teacher")
   .post(ctrlSteps.teacherCreate);
 
-  router
+router
   .route("/questions/:questionid/steps/:stepid/student")
   .post(ctrlSteps.studentCreate);
 
@@ -58,5 +58,11 @@ router
 router
   .route("/filieres/addscore/:filiereid")
   .patch(ctrlFilieres.addScoreToFiliere);
+
+// Register user
+
+// user login
+
+// User Logout
 
 module.exports = router;
