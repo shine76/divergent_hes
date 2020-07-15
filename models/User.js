@@ -22,14 +22,6 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  role: {
-    type: Number,
-    default: 2,
-  },
-  admin: {
-    type: Boolean,
-    default: false,
-  },
 });
 
 const User = mongoose.model("user", UserSchema);

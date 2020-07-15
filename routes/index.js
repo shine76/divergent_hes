@@ -4,6 +4,7 @@ const ctrlSurveys = require("../controllers/surveys");
 const ctrlQuestions = require("../controllers/questions");
 const ctrlFilieres = require("../controllers/filieres");
 const ctrlSteps = require("../controllers/steps");
+const ctrlUsers = require("../controllers/users");
 
 // surveys
 router
@@ -61,6 +62,8 @@ router
 
 // Register user
 
+router.route("/users/register").post(ctrlUsers.registerUser);
+router.route("/users/login").post(ctrlUsers.loginUser);
 // user login
 
 // User Logout
