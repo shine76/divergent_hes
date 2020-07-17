@@ -39,6 +39,16 @@ class App extends Component {
                   />
                   <Route
                     exact
+                    path="/admin/questions/:id/step/:stepid"
+                    component={StepEdit}
+                  />
+                  <Route
+                    exact
+                    path="/admin/questions/:id"
+                    component={QuestionEdit}
+                  />
+                  <Route
+                    exact
                     path="/admin/surveys/:id"
                     component={SurveyEdit}
                   />
@@ -74,12 +84,7 @@ class App extends Component {
                 <Route exact path="/surveys/:id" component={SurveyShow} />
 
                 <Route exact path="/surveys" component={Surveys} />
-                <Route
-                  exact
-                  path="/questions/:id/step/:stepid"
-                  component={StepEdit}
-                />
-                <Route exact path="/questions/:id" component={QuestionEdit} />
+
                 <Route exact path="/info" component={Information} />
                 <Route exact path="/feedback" component={Feedback} />
                 <Route exact path="/dialog" component={Dialog} />

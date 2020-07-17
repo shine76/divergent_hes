@@ -30,7 +30,7 @@ export const createQuestion = (surveyid, formData) => {
       type: CREATE_QUESTION,
       payload: response.data,
     });
-    history.push(`/surveys/${surveyid}/edit`);
+    //history.push(`/surveys/${surveyid}/edit`);
   };
 };
 

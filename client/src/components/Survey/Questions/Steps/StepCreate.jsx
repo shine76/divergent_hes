@@ -11,25 +11,23 @@ class StepCreate extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="col-md-4" style={{ marginTop: 10 }}>
-          <div className="card">
-            <h5 className="card-header text-center">
-              Ajouter une nouvelle étape
-            </h5>
-            <div className="card-body">
-              <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                <Field
-                  name="titre"
-                  component={renderInput}
-                  label="Titre"
-                  type="text"
-                />
-                <br />
-                <button type="submit" className="btn btn-secondary btn-block">
-                  Créer
-                </button>
-              </form>
-            </div>
+        <div className="card">
+          <h5 className="card-header text-center">
+            Ajouter une nouvelle étape
+          </h5>
+          <div className="card-body">
+            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+              <Field
+                name="titre"
+                component={renderInput}
+                label="Titre"
+                type="text"
+              />
+              <br />
+              <button type="submit" className="btn btn-secondary btn-block">
+                Créer
+              </button>
+            </form>
           </div>
         </div>
       </React.Fragment>

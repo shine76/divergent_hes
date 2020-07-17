@@ -20,51 +20,49 @@ class QuestionCreate extends Component {
   };
   render() {
     return (
-      <div className="col-md-5">
-        <div className="card">
-          <div className="card-header text-center">
-            <strong>Ajouter une nouvelle question</strong>
-          </div>
-          <div className="card-body">
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-              <Field
-                name="description"
-                component={renderTextArea}
-                label="Détail de la question"
-                type="text"
-                row="5"
-              />
-              <Field
-                name="titre"
-                component={renderInput}
-                label="Interrogation"
-                type="text"
-              />
-              <Field
-                name="maxPoints"
-                component={renderInput}
-                label="Points maximums"
-                type="number"
-              />
-              <Field
-                name="type"
-                component={renderSelectForTypes}
-                data={this.state.typeOptions}
-                label="Veuillez choisir le type de Question"
-              />
+      <div className="card">
+        <div className="card-header text-center">
+          <strong>Ajouter une nouvelle question</strong>
+        </div>
+        <div className="card-body">
+          <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+            <Field
+              name="description"
+              component={renderTextArea}
+              label="Détail de la question"
+              type="text"
+              row="5"
+            />
+            <Field
+              name="titre"
+              component={renderInput}
+              label="Interrogation"
+              type="text"
+            />
+            <Field
+              name="maxPoints"
+              component={renderInput}
+              label="Points maximums"
+              type="number"
+            />
+            <Field
+              name="type"
+              component={renderSelectForTypes}
+              data={this.state.typeOptions}
+              label="Veuillez choisir le type de Question"
+            />
 
-              <br />
-              <button type="submit" className="btn btn-secondary btn-sm">
-                Ajouter
-              </button>
-              <button
-                className="btn btn-danger btn-sm"
-                onClick={() => this.props.hideQuestion()}
-              >
-                Annuler
-              </button>
-            </form>
-          </div>
+            <br />
+            <button type="submit" className="btn btn-secondary btn-sm">
+              Ajouter
+            </button>
+            <button
+              className="btn btn-danger btn-sm"
+              onClick={() => this.props.hideQuestion()}
+            >
+              Annuler
+            </button>
+          </form>
         </div>
       </div>
     );

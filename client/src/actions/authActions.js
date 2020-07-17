@@ -34,7 +34,7 @@ export const LoginU = (formValues) => {
 
       // set current user
       dispatch(setCurrentUser(decoded));
-      history.push("/landing");
+      history.push("/admin/surveys");
     } catch (error) {
       dispatch({
         type: GET_ERRORS,

@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { logoutUser } from "../../actions/authActions";
+import { connect } from "react-redux";
 
-export default class AdminNavBar extends Component {
+class AdminNavBar extends Component {
+  onLogoutClick = () => {
+    this.props.logoutUser();
+  };
+
   render() {
     return (
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -84,9 +90,20 @@ export default class AdminNavBar extends Component {
                 </a>
               </div>
             </li>
+            <li className="nav-item">
+              <a
+                href="/"
+                className="btn btn-danger"
+                onClick={() => this.onLogoutClick()}
+              >
+                Déconnexion
+              </a>
+            </li>
           </ul>
         </div>
       </nav>
     );
   }
 }
+
+export default connect(null, { logoutUser })(AdminNavBar);
