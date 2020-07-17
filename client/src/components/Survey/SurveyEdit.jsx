@@ -46,7 +46,7 @@ class SurveyEdit extends Component {
             })
           }
         >
-          Ajouter une question
+          {this.state.showQuestionCreate ? "Annuler" : "Ajouter une question"}
         </button>
         {this.showSurveyQuestions()}
         {this.state.showQuestionCreate ? (

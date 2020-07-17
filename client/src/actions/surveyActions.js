@@ -41,6 +41,7 @@ export const createSurvey = (formData) => {
       type: CREATE_SURVEY,
       payload: response.data,
     });
-    history.push(`/surveys/${response.data._id}/edit`);
+    toast.info("Evaluation bien crée");
+    history.push(`/admin/surveys/${response.data._id}`);
   };
 };
