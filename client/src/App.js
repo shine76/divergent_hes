@@ -21,6 +21,7 @@ import AdminLayout from "./components/Layouts/AdminLayout";
 import { connect } from "react-redux";
 import Admin from "./components/Admin/Admin";
 import AdminSurveys from "./components/Admin/AdminSurveys";
+import Filieres from "./components/Filiere/Filieres";
 
 class App extends Component {
   render() {
@@ -52,8 +53,10 @@ class App extends Component {
                     path="/admin/surveys/:id"
                     component={SurveyEdit}
                   />
-
+                  <Route exact path="/admin/scores" component={Score} />
                   <Route exact path="/admin/surveys" component={AdminSurveys} />
+                  <Route exact path="/admin/filieres" component={Filieres} />
+
                   <Route exact path="/admin/" component={Admin} />
                 </Switch>
               </AdminLayout>

@@ -52,7 +52,7 @@ class Score extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    filieres: state.filiereData.filieres,
+    filieres: Object.values(state.filiereData),
   };
 };
 export default connect(mapStateToProps, { fetchFilieres })(Score);

@@ -56,7 +56,7 @@ class AdminNavBar extends Component {
               </div>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/admin/filières">
+              <NavLink className="nav-link" to="/admin/filieres">
                 Filières
               </NavLink>
             </li>

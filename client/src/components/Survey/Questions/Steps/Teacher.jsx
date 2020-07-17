@@ -30,7 +30,7 @@ class Teacher extends Component {
                 component={renderTextArea}
                 label="Texte"
                 type="text"
-                row="2"
+                row="4"
               />
               <Field
                 name="studentNext"

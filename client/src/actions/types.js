@@ -1,8 +1,12 @@
 export const FETCH_SURVEYS = "FETCH_SURVEYS";
 export const CREATE_SURVEY = "CREATE_SURVEY";
 export const FETCH_SURVEY = "FETCH_SURVEY";
+
+// Filières
 export const FETCH_FILIERES = "FETCH_FILIERES";
+export const CREATE_FILIERE = "CREATE_FILIERE";
 export const SET_FILIERE_SCORE = "SET_FILIERE_SCORE";
+
 export const GET_ERRORS = "GET_ERRORS";
 
 // Questions

@@ -26,23 +26,33 @@ class StepEdit extends Component {
   render() {
     console.log(this.props.match.params);
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <div className="card">
-              <div className="card-header">Teacher data</div>
-              <div className="card-body">
-                <Teacher submitText={(texte) => this.saveTeacherText(texte)} />
-              </div>
+      <div className="row">
+        <div className="col-md-4 col-xs-12">
+          <div className="card">
+            <div className="card-header text-center">
+              <strong> Interlocuteur 1(Prof par exemple)</strong>
+            </div>
+            <div className="card-body">
+              <Teacher submitText={(texte) => this.saveTeacherText(texte)} />
             </div>
           </div>
-          <div className="col-md-6">
-            <div className="card">
-              <div className="card-header">Student data</div>
-              <div className="card-body">
-                <Student submitText={(texte) => this.saveStudentText(texte)} />
-              </div>
+        </div>
+        <div className="col-md-4 col-xs-12">
+          <div className="card">
+            <div className="card-header text-center">
+              <strong>Interlocuteur 2(Etudiant par exemple)</strong>
             </div>
+            <div className="card-body">
+              <Student submitText={(texte) => this.saveStudentText(texte)} />
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4 col-xs-12">
+          <div className="card">
+            <div className="card-header text-center">
+              <strong>Dialogue</strong>
+            </div>
+            <div className="card-body">Enchainement du dialogue ici</div>
           </div>
         </div>
       </div>

@@ -85,7 +85,7 @@ const mapStateToProps = (state) => {
   return {
     auth: state.auth,
     errors: state.errors,
-    filieres: state.filiereData.filieres,
+    filieres: Object.values(state.filiereData),
   };
 };
 
