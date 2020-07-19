@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {
-  exportComponentAsJPEG,
-  exportComponentAsPDF,
-  exportComponentAsPNG,
-} from "react-component-export-image";
+import { exportComponentAsPDF } from "react-component-export-image";
+import { connect } from "react-redux";
+import { fetchFeedback } from "../actions/feedbackActions";
 
 class ComponentToPrint extends React.Component {
+  showStatus = () => {
+    if (this.props.feedb.code === "A") {
+      return "badge badge-danger";
+    } else if (this.props.feedb.code === "B") {
+      return "badge badge-warning";
+    } else if (this.props.feedb.code === "C") {
+      return "badge badge-info";
+    } else {
+      return "badge badge-success";
+    }
+  };
   render() {
     return (
       <div className="container" style={{ marginTop: 10 }}>
@@ -26,13 +35,15 @@ class ComponentToPrint extends React.Component {
             <hr />
             <div className="card col-md-8 offset-md-2">
               <div className="card-body">
-                On sait depuis longtemps que travailler avec du texte lisible et
-                contenant du sens est source de distractions, et empêche de se
-                concentrer sur la mise en page elle-même. L'avantage du Lorem
-                Ipsum sur un texte générique comme 'Du texte. Du texte. Du
-                texte.' est qu'il possède une distribution de lettres plus ou
-                moins normale, et en tout cas comparable avec celle du français
-                standard.
+                <span className={this.showStatus()}>
+                  <strong>{this.props.feedb.status}</strong>
+                </span>{" "}
+                <br />
+                {this.props.feedb.texte} <br />
+                <strong>
+                  Le texte à afficher est paramettrable en fonction du score
+                  obtenu
+                </strong>
               </div>
             </div>
             <br />
@@ -66,16 +77,28 @@ class ComponentToPrint extends React.Component {
   }
 }
 class Feedback extends Component {
-  constructor(props) {
-    super(props);
-    this.componentRef = React.createRef();
+  componentRef = React.createRef();
+
+  componentDidMount() {
+    let score = 22 + parseInt(localStorage.getItem("totalPoints"));
+    if (score > 0 && score < 5) {
+      this.props.fetchFeedback("A");
+    } else if (score >= 5 && score < 10) {
+      this.props.fetchFeedback("B");
+    } else if (score >= 10 && score < 15) {
+      this.props.fetchFeedback("C");
+    } else {
+      this.props.fetchFeedback("D");
+    }
   }
 
   player = localStorage.getItem("pseudo");
   score = 22 + parseInt(localStorage.getItem("totalPoints"));
 
   render() {
-    console.log(JSON.parse(localStorage.getItem("choices")));
+    if (!this.props.feedback) {
+      return <div></div>;
+    }
     const choices = JSON.parse(localStorage.getItem("choices"));
     return (
       <React.Fragment>
@@ -84,6 +107,7 @@ class Feedback extends Component {
             ref={this.componentRef}
             data={choices}
             score={this.score}
+            feedb={this.props.feedback}
           />
 
           <div className="row" style={{ marginTop: 15 }}>
@@ -121,4 +145,9 @@ class Feedback extends Component {
   }
 }
 
-export default Feedback;
+const mapStateToProps = (state) => {
+  return {
+    feedback: state.feedbackData.feedback,
+  };
+};
+export default connect(mapStateToProps, { fetchFeedback })(Feedback);

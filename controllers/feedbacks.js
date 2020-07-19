@@ -22,7 +22,7 @@ const createFeedback = (req, res) => {
 
 // Get Feedback by code
 const getFeedbackByCode = (req, res) => {
-  Feedback.findOne({ code: req.body.code }).then((feedback) => {
+  Feedback.findOne({ code: req.params.fcode }).then((feedback) => {
     if (!feedback) {
       res.status(404).json("Feedback non trouvé");
     }

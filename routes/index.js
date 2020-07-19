@@ -97,6 +97,6 @@ router
   );
 
 // Get Feedback by code
-router.route("/feedback").get(ctrlFeedbacks.getFeedbackByCode);
+router.route("/feedbacks/:fcode").get(ctrlFeedbacks.getFeedbackByCode);
 
 module.exports = router;
