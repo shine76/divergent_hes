@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Filiere = require("../models/Filiere");
 
-// Create a new survey
+// Create a new filière
 const createFiliere = (req, res) => {
   // Creation d'une nouvelle filière
   const newFiliere = new Filiere({
@@ -33,7 +33,6 @@ const getFilieres = (req, res) => {
 
 const addScoreToFiliere = (req, res) => {
   const newscore = req.body.score;
-  console.log(req.body);
   Filiere.findById(req.params.filiereid).then((filiere) => {
     if (!filiere) {
       res.status(404).json({ message: "Filière recherchée non trouvée" });

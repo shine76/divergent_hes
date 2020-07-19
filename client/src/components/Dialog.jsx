@@ -374,7 +374,7 @@ export default class Dialog extends Component {
             </div>
           </div>
         </div>
-        {!this.state.showQuestion ? (
+        {this.state.showQuestion ? (
           <ShowQuestion
             responses={this.state.responses}
             down={this.state.responseDownId}
