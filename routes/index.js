@@ -5,12 +5,16 @@ const ctrlQuestions = require("../controllers/questions");
 const ctrlFilieres = require("../controllers/filieres");
 const ctrlSteps = require("../controllers/steps");
 const ctrlUsers = require("../controllers/users");
+const passport = require("passport");
 
 // surveys
 router
   .route("/surveys")
   .get(ctrlSurveys.getSurveys)
-  .post(ctrlSurveys.createSurvey);
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    ctrlSurveys.createSurvey
+  );
 
 // Get survey by id
 router.route("/surveys/:surveyid").get(ctrlSurveys.getSurveyById);
@@ -22,7 +26,10 @@ router.route("/surveys/:surveyid").get(ctrlSurveys.getSurveyById);
 router
   .route("/surveys/:surveyid/questions")
   .get(ctrlQuestions.getQuestions)
-  .post(ctrlQuestions.createQuestion);
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    ctrlQuestions.createQuestion
+  );
 
 // Get one question
 router.route("/questions/:questionid").get(ctrlQuestions.getQuestion);
@@ -32,29 +39,44 @@ router.route("/questions/:questionid").get(ctrlQuestions.getQuestion);
 // Créer une nouvelle réponse
 router
   .route("/questions/:questionid/reponses")
-  .post(ctrlQuestions.responsesCreate);
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    ctrlQuestions.responsesCreate
+  );
 
 // Create Steps
 router.route("/questions/:questionid/steps").post(ctrlSteps.stepCreate);
 
 router
   .route("/questions/:questionid/steps/:stepid/teacher")
-  .post(ctrlSteps.teacherCreate);
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    ctrlSteps.teacherCreate
+  );
 
 router
   .route("/questions/:questionid/steps/:stepid/student")
-  .post(ctrlSteps.studentCreate);
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    ctrlSteps.studentCreate
+  );
 
 // Créer des réponses supplémentaires
 router
   .route("/questions/:questionid/reponses/:responseid")
-  .post(ctrlQuestions.supplementCreate);
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    ctrlQuestions.supplementCreate
+  );
 
 // Filieres
 router
   .route("/filieres")
   .get(ctrlFilieres.getFilieres)
-  .post(ctrlFilieres.createFiliere);
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    ctrlFilieres.createFiliere
+  );
 
 router
   .route("/filieres/addscore/:filiereid")

@@ -4,6 +4,8 @@ const app = express();
 const http = require("http");
 require("dotenv").config();
 const axios = require("axios");
+const passport = require("passport");
+
 require("./db");
 
 // MiddleWares
@@ -14,6 +16,10 @@ app.use(express.static("public")); //Serves resources from public folder
 // Connect routing
 const apiRouter = require("./routes/index");
 app.use("/api", apiRouter);
+
+// passport initialisation
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
 // ##### FOR DEPLOYEMENT ####
 
