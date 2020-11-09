@@ -47,11 +47,11 @@ class AdminNavBar extends Component {
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to="/admin/surveys" className="dropdown-item">
-                  Liste des Surveys
+                  Liste des évaluations
                 </Link>
                 <div className="dropdown-divider"></div>
                 <Link to="/admin/surveys/new" className="dropdown-item">
-                  Créer un nouveau
+                 Nouvelle évaluation
                 </Link>
               </div>
             </li>
@@ -64,31 +64,6 @@ class AdminNavBar extends Component {
               <NavLink className="nav-link" to="/admin/scores">
                 Scores
               </NavLink>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">
-                  Action
-                </a>
-                <a class="dropdown-item" href="#">
-                  Another action
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </div>
             </li>
             <li className="nav-item">
               <a
